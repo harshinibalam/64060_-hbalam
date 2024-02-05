@@ -1,0 +1,43 @@
+---
+title: "Assignment1"
+author: "Harshini Balam"
+date: "2024-02-05"
+output: pdf_document
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE, comment = NA)
+```
+1. The Assignment consists of the data regarding the IMDB rating, which inculdes both quantitative and qualitative variables. Dataset Source: https://www.kaggle.com/datasets/harshitshankhdhar/imdb-dataset-of-top-1000-movies-and-tv-shows
+```{r}
+library(readr)
+library(knitr)
+library(tinytex)
+library(latexpdf)
+movies <- read_csv("C:/Users/Harshini/Downloads/imdb_top_1000.csv")
+```
+
+```{r}
+View(movies)
+```
+
+2. Descriptive Statistics for the variables “Runtime" and “IMDB_Rating”
+```{r}
+summary(movies[,c('Runtime' , "IMDB_Rating")])
+```
+3. Transforming the “IMDB_Rating” variable into Square Root
+```{r}
+square_IMDB_Rating <- (movies$IMDB_Rating)^(1/2)
+square_IMDB_Rating
+```
+4. Plotting the variables “Meta Score” and “IMDB_Rating” against each other
+```{r}
+plot(movies$Meta_score, movies$IMDB_Rating, main= "Meta Score vs. IMDB_Rating", xlab='MetaScore', ylab='IMDB_Rating')
+```
+5.Scatter Plot for the variables “Meta Score” and “IMDB_Rating”
+```{r}
+library(ggplot2)
+ggplot(data=movies, aes(x=Meta_score, y=IMDB_Rating)) + geom_point(color = "red", size = 2) +
+  labs(title = "Scatter Plot of metascore vs. IMDB_Rating")
+```
+
